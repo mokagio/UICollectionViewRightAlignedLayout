@@ -1,0 +1,7 @@
+platform :ios, "6.0"
+
+target :Example do
+  pod 'UICollectionViewRightAlignedLayout', :path => '../'
+  pod 'OpenSans'
+  pod 'UIColor+FlatColors'
+end

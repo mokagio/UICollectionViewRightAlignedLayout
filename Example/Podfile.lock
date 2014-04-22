@@ -1,0 +1,20 @@
+PODS:
+  - OpenSans (1.0.0)
+  - UICollectionViewRightAlignedLayout (0.0.1)
+  - UIColor+FlatColors (0.0.1)
+
+DEPENDENCIES:
+  - OpenSans
+  - UICollectionViewRightAlignedLayout (from `../`)
+  - UIColor+FlatColors
+
+EXTERNAL SOURCES:
+  UICollectionViewRightAlignedLayout:
+    :path: ../
+
+SPEC CHECKSUMS:
+  OpenSans: ba92552b9df0333c4f4dab5c0105f55594a6cf9c
+  UICollectionViewRightAlignedLayout: 0053f016f46edd0be31759ceb29d5233c51accb2
+  UIColor+FlatColors: 417fbe0894c1da0e7ab6505e1409a26052caa75f
+
+COCOAPODS: 0.32.1
