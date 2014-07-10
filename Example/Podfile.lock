@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  OpenSans: ba92552b9df0333c4f4dab5c0105f55594a6cf9c
+  OpenSans: 3baec7cba529831a54938be34fe3866d88397674
   UICollectionViewRightAlignedLayout: 0053f016f46edd0be31759ceb29d5233c51accb2
-  UIColor+FlatColors: 417fbe0894c1da0e7ab6505e1409a26052caa75f
+  UIColor+FlatColors: 621b66928bbf5a89581a7a5c4099b2c3836f85bb
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
