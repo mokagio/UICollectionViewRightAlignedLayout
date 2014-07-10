@@ -76,7 +76,7 @@ static BOOL kShouldRefresh = NO;
     return cell;
 }
 
-#pragma mark - UICollectionViewDelegateLeftAlignedLayout
+#pragma mark - UICollectionViewDelegateRightAlignedLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
