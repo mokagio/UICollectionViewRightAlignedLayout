@@ -21,16 +21,16 @@
 
 @interface UICollectionViewLayoutAttributes (RightAligned)
 
-- (void)rightAlignFrameOnWidth:(CGFloat)width;
+- (void)rightAlignFrameOnWidth:(CGFloat)width withSectionInset:(UIEdgeInsets)sectionInset;
 
 @end
 
 @implementation UICollectionViewLayoutAttributes (RightAligned)
 
-- (void)rightAlignFrameOnWidth:(CGFloat)width
+- (void)rightAlignFrameOnWidth:(CGFloat)width withSectionInset:(UIEdgeInsets)sectionInset
 {
     CGRect frame = self.frame;
-    frame.origin.x = width - frame.size.width;
+    frame.origin.x = width - frame.size.width - sectionInset.right;
     self.frame = frame;
 }
 
@@ -59,7 +59,7 @@
     BOOL isFirstItemInSection = indexPath.item == 0;
 
     if (isFirstItemInSection) {
-        [currentItemAttributes rightAlignFrameOnWidth:self.collectionView.frame.size.width];
+        [currentItemAttributes rightAlignFrameOnWidth:self.collectionView.frame.size.width withSectionInset:self.sectionInset];
         return currentItemAttributes;
     }
 
@@ -75,7 +75,7 @@
     BOOL isFirstItemInRow = !CGRectIntersectsRect(previousFrame, strecthedCurrentFrame);
 
     if (isFirstItemInRow) {
-        [currentItemAttributes rightAlignFrameOnWidth:self.collectionView.frame.size.width];
+        [currentItemAttributes rightAlignFrameOnWidth:self.collectionView.frame.size.width withSectionInset:self.sectionInset];
         return currentItemAttributes;
     }
 
