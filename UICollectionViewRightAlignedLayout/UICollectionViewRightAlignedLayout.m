@@ -43,26 +43,32 @@
 #pragma mark - UICollectionViewLayout
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSArray* attributesToReturn = [super layoutAttributesForElementsInRect:rect];
-    for (UICollectionViewLayoutAttributes* attributes in attributesToReturn) {
-        if (nil == attributes.representedElementKind) {
-            NSIndexPath* indexPath = attributes.indexPath;
-            attributes.frame = [self layoutAttributesForItemAtIndexPath:indexPath].frame;
+    NSMutableArray *returnAttributesArray = [NSMutableArray array];
+    NSArray *originalAttributesArray = [[super layoutAttributesForElementsInRect:rect] copy];
+    
+    for (UICollectionViewLayoutAttributes *attributes in originalAttributesArray) {
+        if (!attributes.representedElementKind) {
+            NSIndexPath *indexPath = attributes.indexPath;
+            UICollectionViewLayoutAttributes *returnAttributes = [attributes copy];
+            returnAttributes.frame = [self layoutAttributesForItemAtIndexPath:indexPath].frame;
+            
+            [returnAttributesArray addObject:returnAttributes];
         }
     }
-    return attributesToReturn;
+    
+    return returnAttributesArray;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewLayoutAttributes* currentItemAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-
+    UICollectionViewLayoutAttributes* currentItemAttributes = [[super layoutAttributesForItemAtIndexPath:indexPath] copy];
+    
     BOOL isFirstItemInSection = indexPath.item == 0;
-
+    
     if (isFirstItemInSection) {
         [currentItemAttributes rightAlignFrameOnWidth:self.collectionView.frame.size.width withSectionInset:self.sectionInset];
         return currentItemAttributes;
     }
-
+    
     NSIndexPath* previousIndexPath = [NSIndexPath indexPathForItem:indexPath.item-1 inSection:indexPath.section];
     CGRect previousFrame = [self layoutAttributesForItemAtIndexPath:previousIndexPath].frame;
     CGRect currentFrame = currentItemAttributes.frame;
@@ -73,12 +79,12 @@
     // if the current frame, once left aligned to the left and stretched to the full collection view
     // widht intersects the previous frame then they are on the same line
     BOOL isFirstItemInRow = !CGRectIntersectsRect(previousFrame, strecthedCurrentFrame);
-
+    
     if (isFirstItemInRow) {
         [currentItemAttributes rightAlignFrameOnWidth:self.collectionView.frame.size.width withSectionInset:self.sectionInset];
         return currentItemAttributes;
     }
-
+    
     CGFloat previousFrameLeftPoint = previousFrame.origin.x;
     CGRect frame = currentItemAttributes.frame;
     CGFloat minimumInteritemSpacing = [self evaluatedMinimumInteritemSpacingForItemAtIndex:indexPath.row];
@@ -91,7 +97,7 @@
 {
     if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
         id<UICollectionViewDelegateRightAlignedLayout> delegate = (id<UICollectionViewDelegateRightAlignedLayout>)self.collectionView.delegate;
-
+        
         return [delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:index];
     } else {
         return self.minimumInteritemSpacing;
