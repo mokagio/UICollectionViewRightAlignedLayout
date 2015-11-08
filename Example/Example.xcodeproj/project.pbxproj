@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24ECF54C2CB0D6EDA593CE54 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		3F5E30BE1905663F00279D8B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5E30C11905663F00279D8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F5E30C31905663F00279D8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,7 +56,7 @@
 		3F5E30EF1905693C00279D8B /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		3F5E30F519056DC200279D8B /* ExampleViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ExampleViewController~iphone.xib"; sourceTree = "<group>"; };
 		A6FE4E65791946C186EEB873 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE0C7C8FC7EF499B967B14EF /* Pods-Example.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.xcconfig"; path = "Pods/Pods-Example.xcconfig"; sourceTree = "<group>"; };
+		C5B33A9AA69D6F7A3CA84478 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +91,7 @@
 				3F5E30E01905664000279D8B /* ExampleTests */,
 				3F5E30C01905663F00279D8B /* Frameworks */,
 				3F5E30BF1905663F00279D8B /* Products */,
-				FE0C7C8FC7EF499B967B14EF /* Pods-Example.xcconfig */,
+				BC9D961C3DB7DE04A52604DF /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -161,6 +162,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BC9D961C3DB7DE04A52604DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5B33A9AA69D6F7A3CA84478 /* Pods-Example.debug.xcconfig */,
+				24ECF54C2CB0D6EDA593CE54 /* Pods-Example.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,6 +184,7 @@
 				3F5E30BC1905663F00279D8B /* Resources */,
 				D946A24095DE41B68401F596 /* Warn for TODO and FIXME comments */,
 				3A7059E5B87E4532B798803A /* Copy Pods Resources */,
+				165B10A29A77E32B9F64572B /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,6 +266,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		165B10A29A77E32B9F64572B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		235C6987406C4F5C8CF20B6B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Example-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D946A24095DE41B68401F596 /* Warn for TODO and FIXME comments */ = {
@@ -400,7 +426,7 @@
 		};
 		3F5E30E91905664000279D8B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE0C7C8FC7EF499B967B14EF /* Pods-Example.xcconfig */;
+			baseConfigurationReference = C5B33A9AA69D6F7A3CA84478 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -451,7 +477,7 @@
 		};
 		3F5E30EA1905664000279D8B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE0C7C8FC7EF499B967B14EF /* Pods-Example.xcconfig */;
+			baseConfigurationReference = 24ECF54C2CB0D6EDA593CE54 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
