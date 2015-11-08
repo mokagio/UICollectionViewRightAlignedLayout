@@ -43,18 +43,20 @@
 #pragma mark - UICollectionViewLayout
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSArray* attributesToReturn = [super layoutAttributesForElementsInRect:rect];
-    for (UICollectionViewLayoutAttributes* attributes in attributesToReturn) {
-        if (nil == attributes.representedElementKind) {
-            NSIndexPath* indexPath = attributes.indexPath;
-            attributes.frame = [self layoutAttributesForItemAtIndexPath:indexPath].frame;
+    NSArray *originalAttributes = [super layoutAttributesForElementsInRect:rect];
+    NSMutableArray *updatedAttributes = [NSMutableArray arrayWithArray:originalAttributes];
+    for (UICollectionViewLayoutAttributes *attributes in originalAttributes) {
+        if (!attributes.representedElementKind) {
+            NSUInteger index = [updatedAttributes indexOfObject:attributes];
+            updatedAttributes[index] = [self layoutAttributesForItemAtIndexPath:attributes.indexPath];
         }
     }
-    return attributesToReturn;
+
+    return updatedAttributes;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewLayoutAttributes* currentItemAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+    UICollectionViewLayoutAttributes* currentItemAttributes = [[super layoutAttributesForItemAtIndexPath:indexPath] copy];
 
     BOOL isFirstItemInSection = indexPath.item == 0;
 
