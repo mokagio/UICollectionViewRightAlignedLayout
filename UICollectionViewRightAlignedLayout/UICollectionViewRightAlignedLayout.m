@@ -43,25 +43,21 @@
 #pragma mark - UICollectionViewLayout
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSMutableArray *returnAttributesArray = [NSMutableArray array];
-    NSArray *originalAttributesArray = [[super layoutAttributesForElementsInRect:rect] copy];
-    
-    for (UICollectionViewLayoutAttributes *attributes in originalAttributesArray) {
+    NSArray *originalAttributes = [super layoutAttributesForElementsInRect:rect];
+    NSMutableArray *updatedAttributes = [NSMutableArray arrayWithArray:originalAttributes];
+    for (UICollectionViewLayoutAttributes *attributes in originalAttributes) {
         if (!attributes.representedElementKind) {
-            NSIndexPath *indexPath = attributes.indexPath;
-            UICollectionViewLayoutAttributes *returnAttributes = [attributes copy];
-            returnAttributes.frame = [self layoutAttributesForItemAtIndexPath:indexPath].frame;
-            
-            [returnAttributesArray addObject:returnAttributes];
+            NSUInteger index = [updatedAttributes indexOfObject:attributes];
+            updatedAttributes[index] = [self layoutAttributesForItemAtIndexPath:attributes.indexPath];
         }
     }
-    
-    return returnAttributesArray;
+
+    return updatedAttributes;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes* currentItemAttributes = [[super layoutAttributesForItemAtIndexPath:indexPath] copy];
-    
+
     BOOL isFirstItemInSection = indexPath.item == 0;
     
     if (isFirstItemInSection) {
