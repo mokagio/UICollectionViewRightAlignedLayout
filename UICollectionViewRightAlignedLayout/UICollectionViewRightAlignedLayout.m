@@ -73,7 +73,7 @@
                                               self.collectionView.frame.size.width,
                                               currentFrame.size.height);
     // if the current frame, once left aligned to the left and stretched to the full collection view
-    // widht intersects the previous frame then they are on the same line
+    // width intersects the previous frame then they are on the same line
     BOOL isFirstItemInRow = !CGRectIntersectsRect(previousFrame, strecthedCurrentFrame);
 
     if (isFirstItemInRow) {
@@ -83,7 +83,7 @@
 
     CGFloat previousFrameLeftPoint = previousFrame.origin.x;
     CGRect frame = currentItemAttributes.frame;
-    CGFloat minimumInteritemSpacing = [self evaluatedMinimumInteritemSpacingForItemAtIndex:indexPath.row];
+    CGFloat minimumInteritemSpacing = [self evaluatedMinimumInteritemSpacingForItemAtIndex:indexPath.section];
     frame.origin.x = previousFrameLeftPoint - minimumInteritemSpacing - frame.size.width;
     currentItemAttributes.frame = frame;
     return currentItemAttributes;
